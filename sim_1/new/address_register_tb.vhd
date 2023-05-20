@@ -17,7 +17,7 @@ signal arout : std_logic_vector(5 downto 0);
 begin
 
 uut: entity work.address_register port map(
-ARLOAD => senal,
+LD => senal,
 clk => clk,
 AROUT => arout,
 LOAD => direccion

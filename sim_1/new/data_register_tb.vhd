@@ -15,7 +15,7 @@ signal arout : std_logic_vector(7 downto 0) := "00000000";
 begin
 
 uut: entity work.data_register port map(
-DRLOAD => senal,
+LD => senal,
 clk => clk,
 DROUT => arout,
 LOAD => dato

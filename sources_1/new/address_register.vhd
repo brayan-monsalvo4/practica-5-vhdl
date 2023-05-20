@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity address_register is
 Port ( 
-    ARLOAD : in std_logic;
+    LD : in std_logic;
     clk : in std_logic;
     LOAD : in std_logic_vector(5 downto 0);
     AROUT : out std_logic_vector(5 downto 0)
@@ -16,10 +16,10 @@ signal current_address : std_logic_vector(5 downto 0) := "000000";
 begin
 
 
-process(clk, ARLOAD)
+process(clk, LD)
 begin
 if (rising_edge(clk)) then
-    if (ARLOAD='1') then    
+    if (LD='1') then    
         current_address <= LOAD;
     end if;
 end if;

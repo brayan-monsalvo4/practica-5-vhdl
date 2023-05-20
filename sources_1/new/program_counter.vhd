@@ -3,30 +3,26 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
 entity program_counter is port(
-    PCLOAD : in std_logic_vector(5 downto 0);
-    PCINC : in std_logic;
-    PCOUT : out std_logic_vector(5 downto 0);
     clk : in std_logic;
-    enable: in std_logic
+    LD : in std_logic;
+    INC : in std_logic;
+    LOAD : in std_logic_vector(5 downto 0);
+    PCOUT : out std_logic_vector(5 downto 0)
 );
 end program_counter;
 
 architecture Behavioral of program_counter is
 signal current_count : integer := 0;
-signal aux : integer := 0;
 
 begin
 
-process(clk, enable, PCINC)
+process(clk, LD, INC)
 begin
-
 if (rising_edge(clk)) then
-    if (enable='1') then
-        if(PCINC='1') then
-            current_count <= current_count + 1;
-        else
-            current_count <= to_integer(unsigned(PCLOAD));
-        end if;
+    if(INC='1') then
+        current_count <= current_count + 1;
+    elsif(LD='1') then
+        current_count <= to_integer(unsigned(LOAD));
     end if;
 end if;
 end process;
